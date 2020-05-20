@@ -16,7 +16,7 @@ const BooksList = ({ books, updateBookShelf }) => {
                 <div className="col s12 m12 l4" key={book.id}>
                 <div className="card horizontal z-depth-0">
                     <div className="card-image">
-                        <img src={(book.imageLinks || {}).thumbnail} height="200" width="150" />
+                        <img src={(book.imageLinks || {}).thumbnail} height="200" width="150" alt="book-cover" />
                     </div>
                     <div className="card-stacked">
                         <div className="card-content">
@@ -43,10 +43,10 @@ const BooksList = ({ books, updateBookShelf }) => {
                         <ul id={`book-${book.id}`} className='dropdown-content' style={{width: '100%'}}>
                             <li><button className="btn-flat disabled">move to ...</button></li>
                             <li className="divider" tabIndex="-1"></li>
-                            <li><button onClick={() => updateBookShelf(book.id, 'currentlyReading')} className="btn-flat">Currently Reading</button></li>
-                            <li><button onClick={() => updateBookShelf(book.id, 'wantToRead')} className="btn-flat">Want to Read</button></li>
-                            <li><button onClick={() => updateBookShelf(book.id, 'read')} className="btn-flat">Read</button></li>
-                            <li><button onClick={() => updateBookShelf(book.id, '')} className="btn-flat">None</button></li>
+                            <li><button style={{width: '100%'}} onClick={() => updateBookShelf(book.id, 'currentlyReading')} className={`btn-flat ${book.shelf === 'currentlyReading' ? 'grey' : ''}`}>Currently Reading</button></li>
+                            <li><button style={{width: '100%'}} onClick={() => updateBookShelf(book.id, 'wantToRead')} className={`btn-flat ${book.shelf === 'wantToRead' ? 'grey' : ''}`}>Want to Read</button></li>
+                            <li><button style={{width: '100%'}} onClick={() => updateBookShelf(book.id, 'read')} className={`btn-flat ${book.shelf === 'read' ? 'grey' : ''}`}>Read</button></li>
+                            <li><button style={{width: '100%'}} onClick={() => updateBookShelf(book.id, '')} className={`btn-flat ${!book.shelf ? 'grey' : ''}`}>None</button></li>
                         </ul>
                                 
                         </div>
